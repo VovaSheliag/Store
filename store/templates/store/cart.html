@@ -1,0 +1,42 @@
+{% extends "store/base_template.html" %}
+
+{% block title %}Post create{% endblock %}
+
+{% block content %}
+<main>
+  <div class="album py-5 bg-light">
+    <div style="margin-left: 100px;">
+        <h1>Products</h1>
+    </div>
+    <br>
+        <br>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for cart in object_list %}
+            <div class="col">
+              <div class="card h-100 shadow-sm">
+                <h3><a class="nav-link link-dark" href="">{{cart.product.title}}</a></h3>
+                {% if cart.product.image %}
+                 <div class="card-body">
+                <a class="bd-placeholder-img card-img-top" href=""><img class="card-img-top" src=" {{ product.image.url }}"></a>
+                 </div>
+                {% endif %}
+                <div class="card-footer">
+                  <p class="card-text">{{cart.product.description}}</p>
+                  <div class="d-flex justify-content-between align-items-center ">
+                    <div>
+                      <p>{{cart.product.price}} $</p>
+                    </div>
+                    <small class="text-muted">{{product.post_date.date}}</small>
+                    <a class="d-inline btn btn-secondary" href="{% url 'update_post' product.pk %}">Edit</a>
+                    <a class="d-inline btn btn-danger" href="{% url 'delete_post' product.pk %}">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+          </div>
+    </div>
+    </div>
+</main>
+{% endblock %}
